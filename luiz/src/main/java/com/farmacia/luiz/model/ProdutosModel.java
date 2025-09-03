@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "TBPRODUTOS")
-public class Produtos {
+public class ProdutosModel {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CDPRODUTO")
     private Integer cdProduto;
@@ -20,5 +20,5 @@ public class Produtos {
     @Column(name = "DSBULA")
     private String dsBula;
     @Column(name = "VLPRODUTO")
-    private Double vlProduto;
+    private double vlProduto;
 }
