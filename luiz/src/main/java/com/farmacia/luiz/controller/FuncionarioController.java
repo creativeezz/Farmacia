@@ -35,7 +35,7 @@ public class FuncionarioController {
     }
     @GetMapping("/{cdFuncionario}")
     public ResponseEntity<Object> getFuncionario(@PathVariable("cdFuncionario") Integer cdFuncionario) {
-        Optional<FuncionarioModel> funcionario = funcionarioRepository.findByCdFuncionario(cdFuncionario);
+        Optional<FuncionarioModel> funcionario = funcionarioRepository.findById(cdFuncionario);
         if (funcionario.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionário não encontrado");
         }

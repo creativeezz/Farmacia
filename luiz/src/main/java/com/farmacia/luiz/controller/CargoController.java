@@ -34,7 +34,7 @@ public class CargoController {
     }
     @GetMapping("/{idCargo}")
     public ResponseEntity<Object> getCargoById(@PathVariable("idCargo") Integer idCargo) {
-        Optional<CargoModel> cargo = cargoRepository.findByIdCargo(idCargo);
+        Optional<CargoModel> cargo = cargoRepository.findById(idCargo);
         if(cargo.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cargo não encontrado");
         }

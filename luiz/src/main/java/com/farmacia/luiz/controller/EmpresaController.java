@@ -38,7 +38,7 @@ public class EmpresaController {
 
     @GetMapping("/{idEmpresa}")
     public ResponseEntity<Object> getEmpresas(@PathVariable("idEmpresa") Integer idEmpresa){
-        Optional<EmpresaModel> empresa0 = empresaRepository.findAllByIdEmpresa(idEmpresa);
+        Optional<EmpresaModel> empresa0 = empresaRepository.findById(idEmpresa);
 
         if (empresa0.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada");
