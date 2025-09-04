@@ -28,12 +28,16 @@ public class EmpresaController {
 
         var empresaModel = new EmpresaModel();
         BeanUtils.copyProperties(empresaDto, empresaModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(empresaRepository.save(empresaModel));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(empresaRepository.save(empresaModel));
     }
 
     @GetMapping
     public ResponseEntity<List<EmpresaModel>> listarEmpresas(){
-        return ResponseEntity.status(HttpStatus.OK).body(empresaRepository.findAll());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(empresaRepository.findAll());
     }
 
     @GetMapping("/{idEmpresa}")
@@ -41,8 +45,12 @@ public class EmpresaController {
         Optional<EmpresaModel> empresa0 = empresaRepository.findById(idEmpresa);
 
         if (empresa0.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Empresa não encontrada");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(empresa0.get());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(empresa0.get());
     }
 }

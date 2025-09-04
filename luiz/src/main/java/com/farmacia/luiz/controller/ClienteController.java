@@ -22,22 +22,33 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     @PostMapping
-    public ResponseEntity<ClienteModel> salvarCliente(@RequestBody @Valid ClienteDto clienteDto) {
+    public ResponseEntity<ClienteModel> salvarCliente(@RequestBody
+                                                          @Valid
+                                                          ClienteDto clienteDto) {
 
         var clienteModel =  new ClienteModel();
         BeanUtils.copyProperties(clienteDto, clienteModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(clienteModel));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(clienteRepository
+                        .save(clienteModel));
     }
     @GetMapping
     public ResponseEntity<List<ClienteModel>> listarCliente() {
-        return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.findAll());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(clienteRepository.findAll());
     }
     @GetMapping("/{cdCliente}")
     public ResponseEntity<Object> getCliente(@PathVariable("cdCliente") Integer cdCliente) {
         Optional<ClienteModel>  clienteModel = clienteRepository.findById(cdCliente);
         if (clienteModel.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Cliente não encontrado");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(clienteModel.get());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(clienteModel.get());
     }
 }

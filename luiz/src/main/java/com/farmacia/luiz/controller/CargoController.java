@@ -26,7 +26,10 @@ public class CargoController {
 
         var cargoModel = new CargoModel();
         BeanUtils.copyProperties(cargoDto, cargoModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(cargoRepository.save(cargoModel));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(cargoRepository
+                        .save(cargoModel));
     }
     @GetMapping
     public ResponseEntity<List<CargoModel>> listarCargos() {
@@ -36,8 +39,12 @@ public class CargoController {
     public ResponseEntity<Object> getCargoById(@PathVariable("idCargo") Integer idCargo) {
         Optional<CargoModel> cargo = cargoRepository.findById(idCargo);
         if(cargo.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cargo não encontrado");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Cargo não encontrado");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(cargo.get());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(cargo.get());
     }
 }

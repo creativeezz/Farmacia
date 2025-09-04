@@ -26,18 +26,26 @@ public class ProdutosController {
                                                 ProdutosDto produtosDto) {
         var produtoModel = new ProdutosModel();
         BeanUtils.copyProperties(produtosDto, produtoModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtosRepository.save(produtoModel));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(produtosRepository.save(produtoModel));
     }
     @GetMapping
     public ResponseEntity<List<ProdutosModel>> getAllProdutos() {
-        return ResponseEntity.status(HttpStatus.OK).body(produtosRepository.findAll());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(produtosRepository.findAll());
     }
     @GetMapping("/{cdProduto}")
     public ResponseEntity<Object> getProduto(@PathVariable("cdProduto") Integer cdProduto) {
         Optional<ProdutosModel> produto0 = produtosRepository.findById(cdProduto);
         if(produto0.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Produto não encontrado");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(produto0.get());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(produto0.get());
     }
 }
