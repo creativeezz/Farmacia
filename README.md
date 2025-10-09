@@ -1,2 +1,2 @@
 # Farmacia
-Projeto Farmacia da Trier
+Projeto Farmacia
